@@ -32,7 +32,11 @@ public class RoleController {
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public void apdateRole(@RequestBody Role role,@PathVariable long id){
         Role s = findById(id).get();
+<<<<<<< HEAD
         s.setRole(s.getRole());
+=======
+        s.setNomRole(s.getNomRole());
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
         roleService.updateRole(s);}
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")

@@ -19,6 +19,9 @@ public interface RoleService {
     Collection<Role> findAll();
 
     void deleteRoleById(long id);
+<<<<<<< HEAD
 
     Optional<Role> findByName(String name);
+=======
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
 }

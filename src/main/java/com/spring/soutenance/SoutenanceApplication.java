@@ -1,14 +1,20 @@
 package com.spring.soutenance;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.soutenance.DAO.RoleRepository;
 import com.spring.soutenance.DAO.UserRepository;
 import com.spring.soutenance.domain.Role;
 import com.spring.soutenance.springsocial.config.AppProperties;
+=======
+import com.spring.soutenance.DAO.RoleRepository;
+import com.spring.soutenance.Service.UserService;
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< HEAD
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,6 +53,20 @@ RoleRepository roleRepository;
 
 
 
+=======
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+
+
+@SpringBootApplication (exclude = { SecurityAutoConfiguration.class})
+public class SoutenanceApplication implements CommandLineRunner {
+
+@Autowired
+UserService userService;
+	@Autowired
+	private RoleRepository roleRepository;
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
 	public static void main(String[] args) {
 		SpringApplication.run(SoutenanceApplication.class, args);
 
@@ -56,6 +76,7 @@ RoleRepository roleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 /*
 
 	Role r1 = new Role();
@@ -88,6 +109,10 @@ RoleRepository roleRepository;
 		a.setFirstName("Saifeddine");
 		a.getUserRoles().add(roleService.findByName("ADMIN").get());
 		userService.saveUser(a);*/
+=======
+		//UserApp user=new UserApp();
+		//Etudiant e = new Etudiant();
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
 		//e.setFirstName("achref");
 		//userService.saveUser(e);
 		//user.setUserId(5);
@@ -98,12 +123,15 @@ RoleRepository roleRepository;
 
 
 
+<<<<<<< HEAD
 		//System.err.println(userRepository.findByUserName("sayf").get().getUserRoles());
 
 
 
 
 
+=======
+>>>>>>> 91b3dc92a671722fccd3876725f715f68b06e8bb
 
 
 	}
