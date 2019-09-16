@@ -15,7 +15,7 @@ import java.io.Serializable;
 @PasswordMatches
 public class UserDto implements Serializable {
 
-    private long userId;
+    private long id;
 
     private String firstName;
     private String lastName;

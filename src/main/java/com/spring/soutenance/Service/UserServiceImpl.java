@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserApp saveUser(UserDto userDto) {
-        UserApp  user=userRepository.findByEmail(userDto.getEmail());
+        UserApp  user=userRepository.findByEmail(userDto.getEmail()).get();
         if(user!=null) throw new RuntimeException("User already exists");
 
         if (userDto.getRole().equals(ETUDIANT)){
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserApp> findUser(UserApp user) {
 
-        return userRepository.findById(user.getUserId());
+        return userRepository.findById(user.getId());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserApp findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).get();
     }
 
     @Override

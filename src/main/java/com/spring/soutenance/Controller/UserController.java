@@ -1,12 +1,22 @@
 package com.spring.soutenance.Controller;
 
+import com.spring.soutenance.DAO.RoleRepository;
+import com.spring.soutenance.DAO.UserRepository;
 import com.spring.soutenance.DTO.UserDto;
 import com.spring.soutenance.Service.UserService;
+import com.spring.soutenance.domain.Role;
 import com.spring.soutenance.domain.UserApp;
+import com.spring.soutenance.springsocial.exception.ResourceNotFoundException;
+import com.spring.soutenance.springsocial.security.CurrentUser;
+import com.spring.soutenance.springsocial.security.TokenProvider;
+import com.spring.soutenance.springsocial.security.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -17,6 +27,12 @@ public class UserController {
     @Autowired
     UserService userService;
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
+
 
     @GetMapping("/hello")
     public String hello (){
@@ -57,8 +73,30 @@ public class UserController {
     }
 
 
+    @GetMapping("/user/me/{id}")
+    public UserApp getCurrentUser( @PathVariable long id) {
+        return userRepository.findById(id).get();
+    }
 
 
+
+    @PostMapping("/validateRole")
+    public void validateRole(@RequestBody UserDto userDto){
+            UserApp user = userRepository.findById(userDto.getId()).get();
+           if (user.getUserRoles().stream().anyMatch(x -> x.getRole().equalsIgnoreCase(userDto.getRole()))){
+               System.err.println("termtek");
+               return;
+           }
+            Role role = roleRepository.findByRole(userDto.getRole()).get();
+            user.getUserRoles().add(role);
+            user.setNiveau(userDto.getNiveau());
+            user.setSpecialite(userDto.getSpecialite());
+
+            userRepository.save(user);
+
+
+
+    }
 
 }
 

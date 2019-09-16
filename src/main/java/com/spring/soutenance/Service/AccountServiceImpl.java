@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public UserApp saveUser(UserDtoRegistration userDtoRegistration) {
-        UserApp  user=userRepository.findByEmail(userDtoRegistration.getEmail());
+        UserApp  user=userRepository.findByEmail(userDtoRegistration.getEmail()).get();
         if(user!=null) throw new RuntimeException("User already exists");
         //if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
         UserApp userApp=new UserApp();

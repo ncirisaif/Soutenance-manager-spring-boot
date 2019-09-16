@@ -1,4 +1,9 @@
-package com.spring.soutenance.Config;
+package com.spring.soutenance.springsocial.security;
+
+
+/**
+ * @author Nciri Sayf
+ */
 
 public interface SecurityParams {
     public static final String JWT_HEADER_NAME="Authorization";

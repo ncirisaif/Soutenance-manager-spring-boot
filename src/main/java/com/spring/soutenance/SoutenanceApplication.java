@@ -3,18 +3,20 @@ package com.spring.soutenance;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.soutenance.DAO.RoleRepository;
 import com.spring.soutenance.DAO.UserRepository;
+import com.spring.soutenance.domain.Role;
+import com.spring.soutenance.springsocial.config.AppProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
-import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
-import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 
 
 @SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
 public class SoutenanceApplication implements CommandLineRunner {
 
 @Autowired
@@ -26,11 +28,12 @@ UserRepository userRepository;
 @Autowired
 RoleRepository roleRepository;
 
+
+
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 
 
 
@@ -53,7 +56,9 @@ RoleRepository roleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-	/*	Role r1 = new Role();
+/*
+
+	Role r1 = new Role();
 		r1.setRole("ADMIN");
 		roleRepository.save(r1);
 		Role r2 = new Role();
@@ -64,6 +69,7 @@ RoleRepository roleRepository;
 		r3.setRole("ENSEIGNANT");
 		roleRepository.save(r3);
 */
+
 
 /*
 		Etudiant e = new Etudiant();
